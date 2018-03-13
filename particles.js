@@ -12,9 +12,7 @@ var pJS = function(tag_id, params){
   var canvas_el = document.querySelector('#'+tag_id+' > .particles-js-canvas-el');
 
   /* particles.js variables with default values */
-  this.pJS = {        
-    // Default FPS limit implementation (see line 1314 for codified change).
-    fps_limit: 0,
+  this.pJS = {
     canvas: {
       el: canvas_el,
       w: canvas_el.offsetWidth,
@@ -127,6 +125,8 @@ var pJS = function(tag_id, params){
       },
       mouse:{}
     },
+    // Default FPS limit implementation (see line 1314 for codified change).
+    fps_limit: 0,
     retina_detect: false,
     fn: {
       interact: {},
@@ -1342,16 +1342,14 @@ var pJS = function(tag_id, params){
     // FPS limit logic
     // Check if the fps_limit has been set to a value other than 0 by default (and handle invalid input).
     // If so, use a setTimeout method to apply the fps limit, if not, then unlock the FPS to the default v-sync.
-    var fps_limit = pJS.particles.fps_limit;
-    if (fps_limit <= 0) {
+    if (typeof pJS.fps_limit === "number" && pJS.fps_limit > 0) {
+      setTimeout(function () {
+        defaultDraw()
+      }, 1000 / pJS.fps_limit)
     } else {
-        setTimeout(function () {
-            defaultDraw()
-        }, 1000 / fps_limit)
+      defaultDraw()
     }
-
   };
-
 
   pJS.fn.vendors.checkBeforeDraw = function(){
 

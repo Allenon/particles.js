@@ -12,7 +12,6 @@ particlesJS.load('particles-js', 'particles.json', function() {
 /* Otherwise just put the config content (json): */
 
 particlesJS('particles-js',
-  
   {
     "particles": {
       "number": {
@@ -119,6 +118,7 @@ particlesJS('particles-js',
         }
       }
     },
+    "fps_limit": 30,
     "retina_detect": true,
     "config_demo": {
       "hide_card": false,
@@ -129,5 +129,4 @@ particlesJS('particles-js',
       "background_size": "cover"
     }
   }
-
 );
